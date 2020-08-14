@@ -63,10 +63,17 @@ public class BooksController {
 		return "/books/edit.jsp";
 	}
 
-	@RequestMapping(value = "/books/{id}", method = RequestMethod.PUT)
-	public String update(@Valid @ModelAttribute("book") Book book, BindingResult result, @PathVariable("id") Long id,
-			@RequestParam(value = "title") String title, @RequestParam(value = "description") String desc,
-			@RequestParam(value = "language") String lang, @RequestParam(value = "numberOfPages") Integer numOfPages) {
+	@RequestMapping(value="/books/{id}", method=RequestMethod.PUT)
+	public String update(
+			@Valid 
+			@ModelAttribute("book") Book book, 
+			BindingResult result,
+			@PathVariable("id") Long id,
+			@RequestParam(value="title") String title, 
+			@RequestParam(value="description") String desc, 
+			@RequestParam(value="language") String lang, 
+			@RequestParam(value="numberOfPages") Integer numOfPages
+			) {
 		if (result.hasErrors()) {
 			return "books/edit.jsp";
 		} else {
@@ -74,8 +81,8 @@ public class BooksController {
 			return "redirect:/books";
 		}
 	}
-
-	@RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
+	
+    @RequestMapping(value = "/books/{id}", method = RequestMethod.DELETE)
 	public String destory(@PathVariable("id") Long id) {
 		bookService.deleteBook(id);
 		;
